@@ -3,11 +3,10 @@ var t=0;
 function count(){t++;}
 function StartWatch()
 {
-    let reset,start, stop ;
     let flag=0;
     let countvalue;
     let second= new Date();
-     let durations=t;
+    let durations=t;
     
     this.start=function()
     {
@@ -15,7 +14,7 @@ function StartWatch()
         if(flag==0)
         {
            console.log("succesfull call"); 
-           coutvalue=setInterval(count,1000);
+           countvalue=setInterval(count,100);
             
         }
         else
@@ -47,17 +46,13 @@ function StartWatch()
                     start=stop=durations=null;
     };
    Object.defineProperty(this,'durations',{
-          set:function()
+        set:function()
         {
             durations=t;
         },
-        get:function(){return durations;}
-
-      
-    });
+        get:function(){var v; if(t>=60){v=t; v=v/60;}else{ v=t;}durations=v; return durations;}
+		});
 
     
 }
-
-const sw= new StartWatch();
 
